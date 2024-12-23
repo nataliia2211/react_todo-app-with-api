@@ -33,10 +33,8 @@ export const Header: React.FC<Props> = props => {
       return;
     }
 
-    try {
       await onAddTodo(inputValue.trim());
       setInputValue('');
-    } catch (err) {}
   };
 
   useEffect(() => {
