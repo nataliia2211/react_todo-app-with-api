@@ -10,7 +10,7 @@ export const ErrorNotification: React.FC<Props> = props => {
   const { error, setErrorMessage } = props;
 
   useEffect(() => {
-    if (error === Errors.Empty) {
+    if (!error.length) {
       return;
     }
 

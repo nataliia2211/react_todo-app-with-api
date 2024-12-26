@@ -29,7 +29,7 @@ export const Footer: React.FC<Props> = ({
         {Object.values(FilterType).map(filter => (
           <a
             key={filter}
-            href={`#/${filter === FilterType.All ? '' : filter.toLowerCase()}`}
+            href={`#/${filter !== FilterType.All && filter.toLowerCase()}`}
             className={classNames('filter__link', {
               selected: filteredField === filter,
             })}

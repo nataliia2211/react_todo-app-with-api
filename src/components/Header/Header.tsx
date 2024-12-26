@@ -33,8 +33,13 @@ export const Header: React.FC<Props> = props => {
       return;
     }
 
+    try {
       await onAddTodo(inputValue.trim());
       setInputValue('');
+    } catch (err) {
+      // eslint-disable-next-line
+      console.error(err);
+    }
   };
 
   useEffect(() => {
@@ -49,7 +54,7 @@ export const Header: React.FC<Props> = props => {
 
   return (
     <header className="todoapp__header">
-      {todosLength !== 0 && (
+      {!!todosLength && (
         <button
           type="button"
           className={cn('todoapp__toggle-all', {

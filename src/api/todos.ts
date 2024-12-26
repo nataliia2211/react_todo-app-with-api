@@ -1,5 +1,6 @@
 import { Todo } from '../types/Todo';
 import { client } from '../utils/fetchClient';
+import { FilterType } from '../types/FilterType';
 
 export const USER_ID = 2136;
 
@@ -18,3 +19,16 @@ export const addTodo = (newTodo: Omit<Todo, 'id' | 'userId'>) => {
 export function updateTodo(todo: Todo) {
   return client.patch<Todo>(`/todos/${todo.id}`, todo);
 }
+
+export const filterTodos = (todos: Todo[], filteredField: FilterType) => {
+  return todos.filter(todo => {
+    switch (filteredField) {
+      case FilterType.Active:
+        return !todo.completed;
+      case FilterType.Completed:
+        return todo.completed;
+      default:
+        return todos;
+    }
+  });
+};
